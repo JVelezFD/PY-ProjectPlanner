@@ -3,11 +3,12 @@ import csv;
 def read_tasks(filename):
     tasks = {};
     for row in csv.reader(open(filename)):
-        number = row[0];
+        number = int(row[0]);
         title = row[1];
-        duration = row[2];
-        prerequisites = row[3];
+        duration = float(row[2]);
+        prerequisites = set(map(int,row[3].split()));
         tasks[number] = (title, duration, \
             prerequisites);
     return tasks;
 
+# Test code- currently working 
