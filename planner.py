@@ -13,4 +13,24 @@ def read_tasks(filename):
             prerequisites);
     return tasks;
 
-# Test code- currently working 
+#adding logic 
+
+def order_tasks(tasks):
+    incomplete = set(tasks)
+    completed = set()
+    start_days = {}
+    while incomplete:
+        for task_number in incomplete:
+            task = tasks[task_number]
+            if task.prerequisites.issubset(completed):
+                earliest_start_day = 0
+                for prereq_number in task.prerequisites:
+                    prereq_end_day = start_days[prereq_number] + \
+                                     tasks[prereq_number].duration
+                    if prereq_end_day > earliest_start_day:
+                        earliest_start_day = prereq_end_day
+                start_days[task_number] = earliest_start_day
+                incomplete.remove(task_number)
+                completed.add(task_number)
+                break
+    return start_days
