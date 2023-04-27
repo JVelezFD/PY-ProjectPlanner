@@ -1,4 +1,7 @@
 import csv;
+import tkinter;
+from tkinter.filedialog import askopenfile;
+
 from collections import namedtuple;
 Task = namedtuple("Task", ["title", "duration", "prerequisites"] );
 
@@ -34,3 +37,28 @@ def order_tasks(tasks):
                 completed.add(task_number)
                 break
     return start_days
+
+# draw function for the chart thinking gnatt chart
+def draw_chart()
+
+# create open project functions and call draw function
+
+def open_project():
+    filename = askopenfilename(title="Open Project", initialdir=".",\
+                                filetypes=[( "CSV Document","*.csv")])
+    tasks = read_tasks(filename)
+    draw_chart(tasks, canvas)
+    
+
+
+# create UI for project charts
+
+root = tkinter.Tk()
+root.title("Project Planner")
+open_button = tkinter.Button(root, text="Open project...", \ 
+                             command = open_project)
+open_button.pack(side="top")
+canvas = tkinter.Canvas(root,  width= 800, \
+                         height= 400, bg="white")
+canvas.pack(side="bottom")
+tkinter.mainloop()
