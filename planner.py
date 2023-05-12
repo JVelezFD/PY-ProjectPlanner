@@ -1,6 +1,6 @@
 import csv;
 import tkinter;
-from tkinter.filedialog import askopenfile;
+from tkinter.filedialog import askopenfilename;
 
 from collections import namedtuple;
 Task = namedtuple("Task", ["title", "duration", "prerequisites"] );
@@ -39,7 +39,21 @@ def order_tasks(tasks):
     return start_days
 
 # draw function for the chart thinking gnatt chart
-def draw_chart()
+def draw_chart(tasks, canvas, row_height=40, title_width=300, \
+                line_height=40, day_width=20, bar_height=20, \
+                title_indent=20, font_size=-16):
+    height = canvas["height"]
+    width = canvas["width"]
+    week_width = 5 * day_width
+    canvas.create_line(0, row_height, width, line_height, \
+        fill="gray")
+    
+    for week_number in range(5):
+        x = title_width + week_number * week_width
+        canvas.create_line(x, 0, x, height, fill= "gray")
+        canvas.create_text(x + week_width / 2, row_height/ 2, \
+                            text = f"Week {week_number}", \
+                            font=("Helvetica", font_size, "bold"))
 
 # create open project functions and call draw function
 
@@ -51,11 +65,12 @@ def open_project():
     
 
 
+
 # create UI for project charts
 
 root = tkinter.Tk()
 root.title("Project Planner")
-open_button = tkinter.Button(root, text="Open project...", \ 
+open_button = tkinter.Button(root, text="Open project...",  
                              command = open_project)
 open_button.pack(side="top")
 canvas = tkinter.Canvas(root,  width= 800, \
