@@ -1,6 +1,6 @@
 # PY-ProjectPlanner
 
-This is a simple app to help plan for a project. It
+This is a simple app to help plan for a project providing timelines displayed on a Gantt Chart
 
 # 💻 Tech Stack:
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
